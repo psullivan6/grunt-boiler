@@ -5,21 +5,6 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     
     // -------------------------------------------------------------------------
-    // Uglify
-    // -------------------------------------------------------------------------
-    uglify : {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      },
-      files: {
-        '../<%= pkg.name %>/js/<%= pkg.name %>.min.js' : [
-          './source/**/*.js',
-          '!./source/includes/**/*.js'
-        ]
-      }
-    },
-    
-    // -------------------------------------------------------------------------
     // JS Hint
     // -------------------------------------------------------------------------
     jshint: {
@@ -31,6 +16,23 @@ module.exports = function(grunt) {
         './Gruntfile.js',
         './source/**/*.js'
       ]
+    },
+    
+    // -------------------------------------------------------------------------
+    // Uglify/Minify JS Files
+    // -------------------------------------------------------------------------
+    uglify : {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+        sourceMap: true,
+        sourceMapName: './<%= pkg.name %>/js/scripts.map'
+      },
+      files: {
+        './dist/js/scripts.min.js' : [
+          './source/**/*.js',
+          '!./source/includes/**/*.js'
+        ]
+      }
     },
     
     // -------------------------------------------------------------------------
@@ -77,6 +79,6 @@ module.exports = function(grunt) {
   // ---------------------------------------------------------------------------
   // Tasks > Tasks to Run
   // ---------------------------------------------------------------------------
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('default', ['jshint', 'uglify']);
 
 };

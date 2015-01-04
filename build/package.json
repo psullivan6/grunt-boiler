@@ -1,12 +1,14 @@
 {
   "name": "grunt-boiler",
-  "version": "1.0.0",
-  "description": "Boilerplate grunt setup",
+  "version": "0.0.0",
+  "description": "Boilerplate node package.json setup for grunt dependencies",
   "repository": {
     "type": "git",
     "url": "https://github.com/psullivan6/grunt-boiler.git"
   },
-  "author": "Patrick Sullivan",
+  "authors": [
+    "Patrick Sullivan"
+  ],
   "bugs": {
     "url": "https://github.com/psullivan6/grunt-boiler/issues"
   },
