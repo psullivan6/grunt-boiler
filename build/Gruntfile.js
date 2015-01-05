@@ -5,33 +5,54 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     
     // -------------------------------------------------------------------------
-    // JS Hint
+    // Clean 'dist'ribution directory
+    // -------------------------------------------------------------------------
+    clean: {
+      options: {
+        force: true
+      },
+      files: ['../dist']
+    },
+    
+    // #########################################################################
+    // Javascript Processing
+    // #########################################################################
+    
+    // -------------------------------------------------------------------------
+    // Javascript Processing > JS Hint
     // -------------------------------------------------------------------------
     jshint: {
       options: {
-        jshintrc: ".jshintrc",
+        jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
       init: [
         './Gruntfile.js',
-        './source/**/*.js'
+        './_source/**/*.js'
       ]
     },
     
     // -------------------------------------------------------------------------
-    // Uglify/Minify JS Files
+    // Javascript Processing > Uglify/Minify JS Files
+    // ----
+    // Build directory: /build/scripts
+    // Dist directory: /dist/js
     // -------------------------------------------------------------------------
-    uglify : {
+    uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
-        sourceMap: true,
-        sourceMapName: './<%= pkg.name %>/js/scripts.map'
+        _sourceMap: true,
+        _sourceMapName: './<%= pkg.name %>/js/scripts.map'
       },
-      files: {
-        './dist/js/scripts.min.js' : [
-          './source/**/*.js',
-          '!./source/includes/**/*.js'
-        ]
+      build: {
+        files: {
+          '../dist/js/scripts.min.js': [
+            './_source/**/*.js',
+            '!./_source/includes/**/*.js'
+          ],
+          '../dist/js/modernizr.min.js': [
+            './bower_components/modernizr/modernizr.js'
+          ]
+        }
       }
     },
     
@@ -79,6 +100,6 @@ module.exports = function(grunt) {
   // ---------------------------------------------------------------------------
   // Tasks > Tasks to Run
   // ---------------------------------------------------------------------------
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['clean', 'jshint', 'uglify']);
 
 };
