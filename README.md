@@ -1,6 +1,6 @@
-# grunt-boiler
+# gulp-boiler
 
-Boilerplate code for grunt
+Boilerplate code for [gulp](http://gulpjs.com/)
 
 
 ---
@@ -16,11 +16,15 @@ Boilerplate code for grunt
 [Node](http://nodejs.org/), specifically [npm](https://docs.npmjs.com/getting-started/installing-node) | 
 [Bower](http://bower.io/#install-bower) | 
 
-## Packages
+## Plugins
 
-### [Grunt](http://gruntjs.com/plugins)
-[`"grunt": "^0.4.5",`](http://gruntjs.com/getting-started#installing-grunt-and-gruntplugins)  
-[`"grunt-autoprefixer": "^2.1.0",`](https://www.npmjs.com/package/grunt-autoprefixer)  
+### [Gulp Plugins](http://gulpjs.com/plugins/)
+
+[`var gulp = require('gulp');`](http://gruntjs.com/getting-started#installing-grunt-and-gruntplugins)  
+
+
+
+[`"grunt-autoprefixer": "^2.1.0",`](https://www.npmjs.com/package/gulp-autoprefixer/)  
 [`"grunt-contrib-clean": "^0.6.0",`](https://www.npmjs.com/package/grunt-contrib-clean)  
 [`"grunt-contrib-copy": "^0.7.0",`](https://www.npmjs.com/package/grunt-contrib-copy)  
 [`"grunt-contrib-jshint": "^0.10.0",`](https://npmjs.org/package/grunt-contrib-jshint)  
