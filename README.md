@@ -13,25 +13,25 @@ Boilerplate code for [gulp](http://gulpjs.com/)
 **required** | **optional**
 --| --
 [Git](http://git-scm.com/) &hellip; duh, kinda | [EditorConfig](http://editorconfig.org/) and editor/IDE [plugin download](http://editorconfig.org/#download)
-[Node](http://nodejs.org/), specifically [npm](https://docs.npmjs.com/getting-started/installing-node) | 
-[Bower](http://bower.io/#install-bower) | 
+[Node](http://nodejs.org/), specifically [npm](https://docs.npmjs.com/getting-started/installing-node) |
+[Bower](http://bower.io/#install-bower) |
 
 ## Plugins
 
 ### [Gulp Plugins](http://gulpjs.com/plugins/)
 
-[`var gulp = require('gulp');`](http://gruntjs.com/getting-started#installing-grunt-and-gruntplugins)  
+[`var gulp = require('gulp');`](http://gruntjs.com/getting-started#installing-grunt-and-gruntplugins)
 
 
 
-[`"grunt-autoprefixer": "^2.1.0",`](https://www.npmjs.com/package/gulp-autoprefixer/)  
-[`"grunt-contrib-clean": "^0.6.0",`](https://www.npmjs.com/package/grunt-contrib-clean)  
-[`"grunt-contrib-copy": "^0.7.0",`](https://www.npmjs.com/package/grunt-contrib-copy)  
-[`"grunt-contrib-jshint": "^0.10.0",`](https://npmjs.org/package/grunt-contrib-jshint)  
-[`"grunt-contrib-sass": "^0.8.1",`](https://npmjs.org/package/grunt-contrib-sass)  
-[`"grunt-contrib-uglify": "^0.7.0",`](https://npmjs.org/package/grunt-contrib-uglify)  
-[`"grunt-contrib-watch": "^0.6.1",`](https://npmjs.org/package/grunt-contrib-watch)  
-[`"grunt-includes": "^0.4.5",`](https://npmjs.org/package/grunt-includes)  
+[`"grunt-autoprefixer": "^2.1.0",`](https://www.npmjs.com/package/gulp-autoprefixer/)
+[`"grunt-contrib-clean": "^0.6.0",`](https://www.npmjs.com/package/grunt-contrib-clean)
+[`"grunt-contrib-copy": "^0.7.0",`](https://www.npmjs.com/package/grunt-contrib-copy)
+[`"grunt-contrib-jshint": "^0.10.0",`](https://npmjs.org/package/grunt-contrib-jshint)
+[`"grunt-contrib-sass": "^0.8.1",`](https://npmjs.org/package/grunt-contrib-sass)
+[`"grunt-contrib-uglify": "^0.7.0",`](https://npmjs.org/package/grunt-contrib-uglify)
+[`"grunt-contrib-watch": "^0.6.1",`](https://npmjs.org/package/grunt-contrib-watch)
+[`"grunt-includes": "^0.4.5",`](https://npmjs.org/package/grunt-includes)
 [`"jshint-stylish": "^1.0.0"`](https://github.com/sindresorhus/jshint-stylish)
 
 ### [Bower](http://bower.io/search/)
@@ -80,3 +80,11 @@ whatever location is desired for final delivery to the user.
 * add as much html 5 boilerplate code as possible
 * tag release when all of this stuff is pretty much done
 * use `/build` and `/dist` for root-level directories
+
+# Notes
+
+- http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/
+- Need to add a `clean` argument to the speed task to deliver just the page speed score and none of the rest of the data
+- Need to add a `persist` parameter or something to the server workflow, so the
+express server and ngrok keep running, this will allow for running PageSpeed on
+the web, rather than w/ the terminal. It will also allow a local server, so duh

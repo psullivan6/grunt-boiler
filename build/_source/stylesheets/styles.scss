@@ -1,0 +1,10 @@
+@import "_colors";
+
+body{
+  background-color: $red;
+  color: $blue;
+  
+  h1{
+    @extend .blue;
+  }
+}
