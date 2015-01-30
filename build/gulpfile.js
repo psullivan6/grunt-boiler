@@ -11,7 +11,7 @@ var stylish      = require('jshint-stylish');
 var concat       = require('gulp-concat');
 var rename       = require('gulp-rename');
 var sourcemaps   = require('gulp-sourcemaps');
-var del          = require('del');
+var clean        = require('gulp-clean');
 var merge        = require('gulp-sequence');
 var gulpif       = require('gulp-if');
 var minify_html  = require('gulp-minify-html');
@@ -26,7 +26,8 @@ var browserSync  = require('browser-sync');
 var runSequence  = require('run-sequence');
 var h5bp         = require('h5bp');
 
-var site = '';
+var SITE = '';
+var PORT = 8000;
 
 
 // #############################################################################
@@ -72,11 +73,6 @@ var stylePaths = [
 
 // =============================================================================
 // Tasks > javascripts                                            $ gulp scripts
-// -----------------------------
-// SUMMARY: Run each set of files from the `scriptPaths` array and conditionally
-// check them for errors, sylish-ly displaying those errors if they exist. If no
-// errors then sourcemap the files, combine them into one file, minify that
-// file, and then move it to the destination directory from `scriptPaths`.
 // =============================================================================
 gulp.task('scripts', function(){
   var tasks = scriptPaths.map(function(files) {
@@ -92,7 +88,7 @@ gulp.task('scripts', function(){
       .pipe(gulp.dest(files.destination));
   });
   
-   return merge(tasks);
+  return merge(tasks);
 });
 
 
@@ -114,56 +110,70 @@ gulp.task('styles', function () {
 // Tasks > Compile HTML                                              $ gulp html
 // =============================================================================
 gulp.task('html', function() {
-  var options = {
-    comments: true,
-    spare: true
-  };
-  
   gulp.src(htmlPaths)
     .pipe(include({
       prefix: '@@',
       basepath: '@file'
     }))
-    .pipe(minify_html(options))
+    .pipe(minify_html({
+      comments: true,
+      spare: true
+    }))
     .pipe(gulp.dest(paths.distribution))
 });
 
 // =============================================================================
 // Tasks > Clean Disribution Directory                              $ gulp clean
 // =============================================================================
-gulp.task('clean', function(callback) {
-  var options = {
-    force: true
-  };
-  
-  del([paths.distribution], options, callback);
+gulp.task('clean', function () {
+  return gulp.src(paths.distribution, { read: false })
+    .pipe(clean({ force: true }));
 });
 
+// =============================================================================
+// Tasks > Start a local server                                    $ gulp server
+// =============================================================================
+gulp.task('server', ['watch'], function(){
+  var app = h5bp.createServer({ root: paths.distribution });
+  app.listen(PORT);
+});
+
+// =============================================================================
+// Tasks > Watch files then run tasks                               $ gulp watch
+// =============================================================================
+gulp.task('watch', function() {
+  // Watch script files
+  gulp.watch(path.join(paths.source, '/javascripts/**/*.js'), ['scripts']);
+});
 
 // =============================================================================
 // Tasks > Page Speed Insights                                      $ gulp speed
 // =============================================================================
+// ngrok public URL made from localhost:PORT
 gulp.task('ngrok-url', function(callback) {
-  return ngrok.connect(8000, function (err, url) {
-    site = url;
+  return ngrok.connect(PORT, function (err, url) {
+    SITE = url;
     callback();
   });
 });
 
+// PageSpeed Desktop
 gulp.task('pagespeed-desktop', function (callback) {
-  pagespeed.output(site, {
-    nokey: 'true',
+  pagespeed.output(SITE, {
+    key: 'AIzaSyBpQImDtbBpSVdkb0Hl5Qm4Ov5ipkWgqeU',
     strategy: 'desktop'
   }, callback);
 });
 
+// PageSpeed Mobile
 gulp.task('pagespeed-mobile', function (callback) {
-  pagespeed.output(site, {
-    nokey: 'true',
+  pagespeed.output(SITE, {
+    key: 'AIzaSyBpQImDtbBpSVdkb0Hl5Qm4Ov5ipkWgqeU',
     strategy: 'mobile'
   }, callback);
 });
 
+// Sequence of PageSpeed related tasks
 gulp.task('pagespeed-sequence', function (callback) {
   return runSequence(
     'server',
@@ -174,19 +184,18 @@ gulp.task('pagespeed-sequence', function (callback) {
   );
 });
 
+// Actual PageSpeed task that runs all the others
 gulp.task('speed', ['pagespeed-sequence'], function(callback) {
-  console.log('Woohoo! Check out your page speed scores!')
   process.exit();
   return callback
-})
-
-
-gulp.task('server', function(){
-  var app = h5bp.createServer({ root: paths.distribution });
-  app.listen(8000);
-})
+});
 
 // =============================================================================
-// Tasks > Default                                                        $ gulp
+// Tasks > Default task                                                   $ gulp
 // =============================================================================
-gulp.task('default', ['clean', 'html', 'scripts']);
+gulp.task('default', ['clean', 'html', 'styles', 'scripts']);
+
+// =============================================================================
+// Tasks > Build the site                                           $ gulp build
+// =============================================================================
+gulp.task('build', ['html', 'styles', 'scripts']);

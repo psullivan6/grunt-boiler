@@ -1,6 +1,6 @@
 (function(){
   
-  var $container = document.getElementByClass('.container');
+  var $container = document.getElementById('container');
   
   console.log($container, 'TEST');
   

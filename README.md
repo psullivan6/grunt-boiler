@@ -69,22 +69,29 @@ whatever location is desired for final delivery to the user.
 1. Navigate to the `/build` directory: `$: cd build/`
 1. Install all the *node* package dependencies: `$: npm install`
 1. Install all the *bower* package dependencies: `$: bower install`
+1. Run the gulp task that corresponds to your need:
+    * `$ gulp` - default task will start the server and watch for file changes
+    * `$ gulp build` - default build task will compile all the files
+    * etc...
 
 ## To-Dos
 
-* add different branches for JADE, HTML, etc... versions
+* add different branches for JADE, HTML, etc... versions?
     * still worth setting some defaults like SASS instead of LESS, always
-* add a new branch for squarepsace setup...use existing code and grunt-init if possible
+* add a new branch for squarepsace setup...use existing code and grunt-init if
+possible
 * add includes section for the boilerplate code for the `<head>`
 * add includes section for the boilerplate code for the footer scripts
-* add as much html 5 boilerplate code as possible
+* add as much html 5 boilerplate code as possible (header, etc...)
 * tag release when all of this stuff is pretty much done
 * use `/build` and `/dist` for root-level directories
-
-# Notes
-
-- http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/
-- Need to add a `clean` argument to the speed task to deliver just the page speed score and none of the rest of the data
-- Need to add a `persist` parameter or something to the server workflow, so the
-express server and ngrok keep running, this will allow for running PageSpeed on
-the web, rather than w/ the terminal. It will also allow a local server, so duh
+* http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/
+* Need to add a `clean` argument to the speed task to deliver just the page
+speed score and none of the rest of the data
+* Add a `release` or some other argument to the build task that create a
+production build and also increments the build number
+* Need to obfuscate / .env the Google API key or some similar method
+* Remove the H5BP package and just use the express server w/o the extra bells
+and whistles
+* Figure out if squarespace can support extra files that aren't their native
+repo files. Basically, can I push the `_source` directory?
