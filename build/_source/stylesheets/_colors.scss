@@ -1,9 +1,112 @@
-$red: #f33;
-$blue: #36f;
+// #############################################################################
+// Mixins
+// #############################################################################
+$colors: (
+  red: #f03,
+  blue: #0074d9,
+  yellow: #ffdc00,
+  orange: #ff851b
+);
 
-.blue{
-  padding: 2em;
-  background-color: white;
-  color: $blue;
-  transform: rotate(45deg);
-}
+$variations: (
+  lightest: ( function: lighten, parameters: 20% ),
+  lighter:  ( function: lighten, parameters: 10% ),
+  light:    ( function: lighten, parameters: 5% ),
+  darkest: ( function: darken, parameters: 15% ),
+  darker:  ( function: darken, parameters: 25% ),
+  dark:    ( function: darken, parameters: 30% )
+);
+
+
+// #############################################################################
+// RED
+// #############################################################################
+$red: #f03;
+
+$red-lightest: lighten($red, 20%);
+$red-lighter:  lighten($red, 10%);
+$red-light:    lighten($red, 5%);
+$red-dark:    darken($red, 15%);
+$red-darker:  darken($red, 25%);
+$red-darkest: darken($red, 30%);
+
+.red-lightest {              color: $red-lightest; }
+.redBG-lightest { background-color: $red-lightest; }
+.red-lighter {               color: $red-lighter; }
+.redBG-lighter {  background-color: $red-lighter; }
+.red-light {                 color: $red-light; }
+.redBG-light {    background-color: $red-light; }
+.red {                       color: $red; }
+.redBG {          background-color: $red; }
+.red-dark {                  color: $red-dark; }
+.redBG-dark {     background-color: $red-dark; }
+.red-darker {                color: $red-darker; }
+.redBG-darker {   background-color: $red-darker; }
+.red-darkest {               color: $red-darkest; }
+.redBG-darkest {  background-color: $red-darkest; }
+
+// #############################################################################
+// BLUE
+// #############################################################################
+$blue: #06f;
+
+$blue-lightest: lighten($blue, 20%);
+$blue-lighter:  lighten($blue, 10%);
+$blue-light:    lighten($blue, 5%);
+$blue-dark:      darken($blue, 15%);
+$blue-darker:    darken($blue, 30%);
+$blue-darkest:   darken($blue, 40%);
+
+.blue-lightest {              color: $blue-lightest; }
+.blueBG-lightest { background-color: $blue-lightest; }
+
+.blue-lighter {               color: $blue-lighter; }
+.blueBG-lighter {  background-color: $blue-lighter; }
+
+.blue-light {                 color: $blue-light; }
+.blueBG-light {    background-color: $blue-light; }
+
+.blue {                       color: $blue; }
+.blueBG {          background-color: $blue; }
+
+.blue-dark {                  color: $blue-dark; }
+.blueBG-dark {     background-color: $blue-dark; }
+
+.blue-darker {                color: $blue-darker; }
+.blueBG-darker {   background-color: $blue-darker; }
+
+.blue-darkest {               color: $blue-darkest; }
+.blueBG-darkest {  background-color: $blue-darkest; }
+
+// #############################################################################
+// GREEN
+// #############################################################################
+$green: #0c6;
+
+$green-lightest: lighten($green, 20%);
+$green-lighter:  lighten($green, 10%);
+$green-light:    lighten($green, 5%);
+$green-dark:      darken($green, 15%);
+$green-darker:    darken($green, 30%);
+$green-darkest:   darken($green, 40%);
+
+.green-lightest {              color: $green-lightest; }
+.greenBG-lightest { background-color: $green-lightest; }
+
+.green-lighter {               color: $green-lighter; }
+.greenBG-lighter {  background-color: $green-lighter; }
+
+.green-light {                 color: $green-light; }
+.greenBG-light {    background-color: $green-light; }
+
+.green {                       color: $green; }
+.greenBG {          background-color: $green; }
+
+.green-dark {                  color: $green-dark; }
+.greenBG-dark {     background-color: $green-dark; }
+
+.green-darker {                color: $green-darker; }
+.greenBG-darker {   background-color: $green-darker; }
+
+.green-darkest {               color: $green-darkest; }
+.greenBG-darkest {  background-color: $green-darkest; }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  @@include('./_head.html', {
+    "title" : "STYLEGUIDE",
+    "description" : "something here"
+  })
+  <link rel="stylesheet" href="stylesheets/styleguide.min.css">
+</head>
+<body class="styleguide">
+  
+  <div class="input_box">
+    <label for="text">First Name: </label>
+    <input id="text" class="input" name="text" type="text" placeholder="text">
+  </div>
+  
+  <ul class="colors">
+    <li id="red">
+      <ul class="clearfix">
+        <li class="color red-lightest"><div class="box redBG-lightest"></div> COLOR</li>
+        <li class="color red-lighter"><div class="box redBG-lighter"></div> COLOR</li>
+        <li class="color red-light"><div class="box redBG-light"></div> COLOR</li>
+        <li class="color color-base red"><div class="box redBG"></div> BASE</li>
+        <li class="color red-dark"><div class="box redBG-dark"></div> COLOR</li>
+        <li class="color red-darker"><div class="box redBG-darker"></div> COLOR</li>
+        <li class="color red-darkest"><div class="box redBG-darkest"></div> COLOR</li>
+      </ul>
+    </li>
+    <li id="blue">
+      <ul class="clearfix">
+        <li class="color blue-lightest"><div class="box blueBG-lightest"></div> COLOR</li>
+        <li class="color blue-lighter"><div class="box blueBG-lighter"></div> COLOR</li>
+        <li class="color blue-light"><div class="box blueBG-light"></div> COLOR</li>
+        <li class="color color-base blue"><div class="box blueBG"></div> BASE</li>
+        <li class="color blue-dark"><div class="box blueBG-dark"></div> COLOR</li>
+        <li class="color blue-darker"><div class="box blueBG-darker"></div> COLOR</li>
+        <li class="color blue-darkest"><div class="box blueBG-darkest"></div> COLOR</li>
+      </ul>
+    </li>
+    <li id="green">
+      <ul class="clearfix">
+        <li class="color green-lightest"><div class="box greenBG-lightest"></div> COLOR</li>
+        <li class="color green-lighter"><div class="box greenBG-lighter"></div> COLOR</li>
+        <li class="color green-light"><div class="box greenBG-light"></div> COLOR</li>
+        <li class="color color-base green"><div class="box greenBG"></div> BASE</li>
+        <li class="color green-dark"><div class="box greenBG-dark"></div> COLOR</li>
+        <li class="color green-darker"><div class="box greenBG-darker"></div> COLOR</li>
+        <li class="color green-darkest"><div class="box greenBG-darkest"></div> COLOR</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <a href="javascript:gaOptout()">Click here to opt-out of Google Analytics</a>
+  
+  @@include('./_footer-scripts.html')
+  <script src="javascripts/styleguide.min.js"></script>
+</body>
+</html>

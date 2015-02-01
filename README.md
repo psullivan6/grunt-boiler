@@ -95,4 +95,6 @@ production build and also increments the build number
 and whistles
 * Figure out if squarespace can support extra files that aren't their native
 repo files. Basically, can I push the `_source` directory?
-* Add in some sort of edit CSS in chrome dev tools and have it port back to the SCSS tool
+* Add in some sort of edit CSS in chrome dev tools and have it port back to the
+SCSS tool
+* https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings

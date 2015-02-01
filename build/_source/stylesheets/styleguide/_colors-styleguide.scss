@@ -1,0 +1,120 @@
+.styleguide{
+  
+  // ###########################################################################
+  // COLORS
+  // ###########################################################################
+  
+  // ===========================================================================
+  // COLORS > RED
+  // ===========================================================================
+  .red-lightest:before { background-color: complement($red-lightest); }
+  .red-lightest:after {  background-color:  grayscale($red-lightest); }
+  .red-lighter:before {  background-color: complement($red-lighter); }
+  .red-lighter:after {   background-color:  grayscale($red-lighter); }
+  .red-light:before {    background-color: complement($red-light); }
+  .red-light:after {     background-color:  grayscale($red-light); }
+  .red:before {          background-color: complement($red); }
+  .red:after {           background-color:  grayscale($red); }
+  .red-dark:before {     background-color: complement($red-dark); }
+  .red-dark:after {      background-color:  grayscale($red-dark); }
+  .red-darker:before {   background-color: complement($red-darker); }
+  .red-darker:after {    background-color:  grayscale($red-darker); }
+  .red-darkest:before {  background-color: complement($red-darkest); }
+  .red-darkest:after {   background-color:  grayscale($red-darkest); }
+  
+  // ===========================================================================
+  // COLORS > BLUE
+  // ===========================================================================
+  .blue-lightest:before { background-color: complement($blue-lightest); }
+  .blue-lightest:after {  background-color:  grayscale($blue-lightest); }
+  .blue-lighter:before {  background-color: complement($blue-lighter); }
+  .blue-lighter:after {   background-color:  grayscale($blue-lighter); }
+  .blue-light:before {    background-color: complement($blue-light); }
+  .blue-light:after {     background-color:  grayscale($blue-light); }
+  .blue:before {          background-color: complement($blue); }
+  .blue:after {           background-color:  grayscale($blue); }
+  .blue-dark:before {     background-color: complement($blue-dark); }
+  .blue-dark:after {      background-color:  grayscale($blue-dark); }
+  .blue-darker:before {   background-color: complement($blue-darker); }
+  .blue-darker:after {    background-color:  grayscale($blue-darker); }
+  .blue-darkest:before {  background-color: complement($blue-darkest); }
+  .blue-darkest:after {   background-color:  grayscale($blue-darkest); }
+  
+  // ===========================================================================
+  // COLORS > GREEN
+  // ===========================================================================
+  .green-lightest:before { background-color: complement($green-lightest); }
+  .green-lightest:after {  background-color:  grayscale($green-lightest); }
+  .green-lighter:before {  background-color: complement($green-lighter); }
+  .green-lighter:after {   background-color:  grayscale($green-lighter); }
+  .green-light:before {    background-color: complement($green-light); }
+  .green-light:after {     background-color:  grayscale($green-light); }
+  .green:before {          background-color: complement($green); }
+  .green:after {           background-color:  grayscale($green); }
+  .green-dark:before {     background-color: complement($green-dark); }
+  .green-dark:after {      background-color:  grayscale($green-dark); }
+  .green-darker:before {   background-color: complement($green-darker); }
+  .green-darker:after {    background-color:  grayscale($green-darker); }
+  .green-darkest:before {  background-color: complement($green-darkest); }
+  .green-darkest:after {   background-color:  grayscale($green-darkest); }
+  
+  // ###########################################################################
+  // DISPLAY
+  // ###########################################################################
+  .colors{
+    max-width: 812px;
+    margin: 0 auto;
+    padding: 0;
+    
+    &, & ul{ list-style: none; }
+    
+    ul{ padding: 0; }
+    
+    > li { margin: 24px 0; }
+    
+    .color{
+      position: relative;
+      float: left;
+      width: 102px;
+      margin: 0 6px;
+      border: 1px solid #ccc;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.5em;
+      
+      &:before,
+      &:after{
+        content: "";
+        position: absolute;
+        top: 33px;
+        opacity: 0;
+        width: 36px;
+        height: 36px;
+        border: 3px solid white;
+        border-radius: 36px;
+      }
+      
+      &:before{
+        left: 0;
+        transition: left 0.25s ease, opacity 0.25s ease;
+      }
+      &:after{
+        right: 0;
+        transition: right 0.25s 0.1s ease, opacity 0.25s 0.1s ease;
+      }
+      
+      &:hover:before, &:hover:after{ opacity: 1; }
+      
+      &:hover:before{ left: -12px; }
+      &:hover:after{ right: -12px; }
+    }
+    
+    .color-base{ padding-bottom: 12px; }
+    
+    .box{
+      width: 90px;
+      height: 90px;
+      margin: 6px;
+    }
+  }
+}

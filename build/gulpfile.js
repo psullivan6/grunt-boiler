@@ -42,28 +42,49 @@ var paths = {
 var scriptPaths = [
   {
     name: 'scripts-header',
-    hint: false,
     source: [
-      path.join(paths.bower, 'modernizr/modernizr.js')
+      path.join(paths.bower, '/modernizr/modernizr.js')
     ],
     destination: path.join(paths.distribution, '/javascripts')
   },
   {
     name: 'scripts-footer',
-    hint: true,
     source: [
-      path.join(paths.source, '/javascripts/**/*.js')
+      path.join(paths.bower, '/jquery/dist/jquery.js'),
+      path.join(paths.source, '/javascripts/*.js'),
+      path.join(paths.source, '/javascripts/!(styleguide)/*.js')
+    ],
+    destination: path.join(paths.distribution, '/javascripts')
+  },
+  {
+    name: 'styleguide',
+    source: [
+      path.join(paths.source, '/javascripts/styleguide/*.js')
     ],
     destination: path.join(paths.distribution, '/javascripts')
   }
 ];
 
-var htmlPaths = [
-  path.join(paths.source, '/templates/**/!(_)*.html')
+var stylePaths = [
+  {
+    name: 'styles',
+    source: [
+      path.join(paths.bower, '/normalize.css/normalize.css'),
+      path.join(paths.source, '/stylesheets/styles.scss')
+    ],
+    destination: path.join(paths.distribution, '/stylesheets')
+  },
+  {
+    name: 'styleguide',
+    source: [
+      path.join(paths.source, '/stylesheets/styleguide/styleguide.scss')
+    ],
+    destination: path.join(paths.distribution, '/stylesheets')
+  }
 ];
 
-var stylePaths = [
-  path.join(paths.source, '/stylesheets/**/*.scss')
+var htmlPaths = [
+  path.join(paths.source, '/templates/**/!(_)*.html')
 ];
 
 
@@ -77,9 +98,9 @@ var stylePaths = [
 gulp.task('scripts', function(){
   var tasks = scriptPaths.map(function(files) {
     return gulp.src(files.source)
-      .pipe(gulpif(files.hint, jshint('.jshintrc')))
-      .pipe(gulpif(files.hint, jshint.reporter(stylish)))
-      .pipe(gulpif(files.hint, jshint.reporter('fail')))
+      .pipe(jshint('.jshintrc'))
+      .pipe(jshint.reporter(stylish))
+      .pipe(jshint.reporter('fail'))
       .pipe(sourcemaps.init())
         .pipe(concat(files.name + '.js'))
         .pipe(minify_js())
@@ -95,15 +116,20 @@ gulp.task('scripts', function(){
 // =============================================================================
 // Tasks > Compile SCSS Styles                                     $ gulp styles
 // =============================================================================
-gulp.task('styles', function () {
-  gulp.src(stylePaths)
-    .pipe(sourcemaps.init())
-      .pipe(sass())
-      .pipe(autoprefixer('last 2 versions'))
-      .pipe(minify_css())
-    .pipe(sourcemaps.write())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest(path.join(paths.distribution, '/stylesheets')));
+gulp.task('styles', function(){
+  var tasks = stylePaths.map(function(files) {
+    return gulp.src(files.source)
+      .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(autoprefixer('last 2 versions'))
+        .pipe(concat(files.name + '.css'))
+        .pipe(minify_css())
+      .pipe(sourcemaps.write())
+      .pipe(rename({suffix: '.min'}))
+      .pipe(gulp.dest(files.destination));
+  });
+  
+  return merge(tasks);
 });
 
 // =============================================================================
@@ -144,6 +170,8 @@ gulp.task('server', ['watch'], function(){
 gulp.task('watch', function() {
   // Watch script files
   gulp.watch(path.join(paths.source, '/javascripts/**/*.js'), ['scripts']);
+  gulp.watch(path.join(paths.source, '/stylesheets/**/*.scss'), ['styles']);
+  gulp.watch(path.join(paths.source, '/templates/**/!(_)*.html'), ['html']);
 });
 
 // =============================================================================
