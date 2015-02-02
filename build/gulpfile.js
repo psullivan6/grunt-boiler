@@ -25,6 +25,7 @@ var ngrok        = require('ngrok');
 var browserSync  = require('browser-sync');
 var runSequence  = require('run-sequence');
 var h5bp         = require('h5bp');
+var plumber      = require('gulp-plumber');
 
 var SITE = '';
 var PORT = 8000;
@@ -98,6 +99,7 @@ var htmlPaths = [
 gulp.task('scripts', function(){
   var tasks = scriptPaths.map(function(files) {
     return gulp.src(files.source)
+      .pipe(plumber())
       .pipe(jshint('.jshintrc'))
       .pipe(jshint.reporter(stylish))
       .pipe(jshint.reporter('fail'))
@@ -106,6 +108,7 @@ gulp.task('scripts', function(){
         .pipe(minify_js())
         .pipe(rename({suffix: '.min'}))
       .pipe(sourcemaps.write())
+      .pipe(plumber.stop())
       .pipe(gulp.dest(files.destination));
   });
   

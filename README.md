@@ -98,3 +98,6 @@ repo files. Basically, can I push the `_source` directory?
 * Add in some sort of edit CSS in chrome dev tools and have it port back to the
 SCSS tool
 * https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings
+* Stop the server gulp task from failing if the styles (or another) task fails.
+It means that if I accidentally save while writing incorrect scss, then the
+entire server will sut down and I have to restart it

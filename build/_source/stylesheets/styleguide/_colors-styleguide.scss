@@ -72,7 +72,7 @@
     
     > li { margin: 24px 0; }
     
-    .color{
+    .swatch{
       position: relative;
       float: left;
       width: 102px;
@@ -103,10 +103,14 @@
         transition: right 0.25s 0.1s ease, opacity 0.25s 0.1s ease;
       }
       
-      &:hover:before, &:hover:after{ opacity: 1; }
+      &:hover:before,
+      &:hover:after,
+      &.active:before,
+      &.active:after{ opacity: 1; }
       
-      &:hover:before{ left: -12px; }
-      &:hover:after{ right: -12px; }
+      &:hover:before, &.active:before{ left: -12px; }
+      &:hover:after,  &.active:after{ right: -12px; }
+      
     }
     
     .color-base{ padding-bottom: 12px; }

@@ -1,7 +1,11 @@
 .styleguide{
   
-  .input_box{
-    max-width: 812px;
-    margin: 0 auto;
+  .color-values li{
+    float: left;
+    width: 30%;
+    margin: 0 2.5%;
+    
+    &:first-child{ margin-left: 0; }
+    &:last-child{ margin-right: 0; }
   }
 }
