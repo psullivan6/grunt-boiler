@@ -6,8 +6,10 @@
     
     var $this = $(this);
     var colorValues = {
-      "hex" : $this.attr('class').split(/\s+/)
-    }
+      'hex' : $this.data('color-hex')
+    };
+    
+    console.log(colorValues);
     
     if (!$this.is($currentActive)) {
       $('.swatch').removeClass('active');

@@ -110,3 +110,16 @@ $green-darkest:   darken($green, 40%);
 
 .green-darkest {               color: $green-darkest; }
 .greenBG-darkest {  background-color: $green-darkest; }
+
+
+// #############################################################################
+// Variables
+// #############################################################################
+
+$color--selected-text: $blue;
+
+$color--horizontal-rule: #ccc;
+
+.ltIE9{ color: red; }
+.IE9{ color: orange; }
+.gtIE9{ color: green; }

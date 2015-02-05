@@ -15,6 +15,7 @@ var clean        = require('gulp-clean');
 var merge        = require('gulp-sequence');
 var gulpif       = require('gulp-if');
 var minify_html  = require('gulp-minify-html');
+var jade         = require('gulp-jade');
 var include      = require('gulp-file-include');
 var sass         = require('gulp-sass');
 var minify_css   = require('gulp-minify-css');
@@ -26,6 +27,7 @@ var browserSync  = require('browser-sync');
 var runSequence  = require('run-sequence');
 var h5bp         = require('h5bp');
 var plumber      = require('gulp-plumber');
+var changed      = require('gulp-changed');
 
 var SITE = '';
 var PORT = 8000;
@@ -43,15 +45,12 @@ var paths = {
 var scriptPaths = [
   {
     name: 'scripts-header',
-    source: [
-      path.join(paths.bower, '/modernizr/modernizr.js')
-    ],
+    source: [ path.join(paths.bower, '/modernizr/modernizr.js') ],
     destination: path.join(paths.distribution, '/javascripts')
   },
   {
     name: 'scripts-footer',
     source: [
-      path.join(paths.bower, '/jquery/dist/jquery.js'),
       path.join(paths.source, '/javascripts/*.js'),
       path.join(paths.source, '/javascripts/!(styleguide)/*.js')
     ],
@@ -59,9 +58,7 @@ var scriptPaths = [
   },
   {
     name: 'styleguide',
-    source: [
-      path.join(paths.source, '/javascripts/styleguide/*.js')
-    ],
+    source: [ path.join(paths.source, '/javascripts/styleguide/*.js') ],
     destination: path.join(paths.distribution, '/javascripts')
   }
 ];
@@ -85,7 +82,7 @@ var stylePaths = [
 ];
 
 var htmlPaths = [
-  path.join(paths.source, '/templates/**/!(_)*.html')
+  path.join(paths.source, '/templates/**/!(_)*.jade')
 ];
 
 
@@ -96,7 +93,7 @@ var htmlPaths = [
 // =============================================================================
 // Tasks > javascripts                                            $ gulp scripts
 // =============================================================================
-gulp.task('scripts', function(){
+gulp.task('scripts', ['vendorScripts'], function(){
   var tasks = scriptPaths.map(function(files) {
     return gulp.src(files.source)
       .pipe(plumber())
@@ -115,6 +112,13 @@ gulp.task('scripts', function(){
   return merge(tasks);
 });
 
+// Move the already minified version of jQuery to the distribution directory
+gulp.task('vendorScripts', function() {
+  gulp.src(path.join(paths.bower, '/jquery/dist/jquery.min.js'))
+    .pipe(changed(path.join(paths.distribution, '/javascripts/vendor')))
+    .pipe(gulp.dest(path.join(paths.distribution, '/javascripts/vendor')))
+});
+
 
 // =============================================================================
 // Tasks > Compile SCSS Styles                                     $ gulp styles
@@ -122,6 +126,7 @@ gulp.task('scripts', function(){
 gulp.task('styles', function(){
   var tasks = stylePaths.map(function(files) {
     return gulp.src(files.source)
+      .pipe(plumber())
       .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer('last 2 versions'))
@@ -129,6 +134,7 @@ gulp.task('styles', function(){
         .pipe(minify_css())
       .pipe(sourcemaps.write())
       .pipe(rename({suffix: '.min'}))
+      .pipe(plumber.stop())
       .pipe(gulp.dest(files.destination));
   });
   
@@ -140,14 +146,13 @@ gulp.task('styles', function(){
 // =============================================================================
 gulp.task('html', function() {
   gulp.src(htmlPaths)
-    .pipe(include({
-      prefix: '@@',
-      basepath: '@file'
-    }))
+    .pipe(plumber())
+    .pipe(jade())
     .pipe(minify_html({
       comments: true,
       spare: true
     }))
+    .pipe(plumber.stop())
     .pipe(gulp.dest(paths.distribution))
 });
 
@@ -174,7 +179,7 @@ gulp.task('watch', function() {
   // Watch script files
   gulp.watch(path.join(paths.source, '/javascripts/**/*.js'), ['scripts']);
   gulp.watch(path.join(paths.source, '/stylesheets/**/*.scss'), ['styles']);
-  gulp.watch(path.join(paths.source, '/templates/**/!(_)*.html'), ['html']);
+  gulp.watch(path.join(paths.source, '/templates/**/!(_)*.jade'), ['html']);
 });
 
 // =============================================================================
@@ -230,3 +235,5 @@ gulp.task('default', ['clean', 'html', 'styles', 'scripts']);
 // Tasks > Build the site                                           $ gulp build
 // =============================================================================
 gulp.task('build', ['html', 'styles', 'scripts']);
+
+module.exports = gulp;
