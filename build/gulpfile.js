@@ -25,7 +25,7 @@ var pagespeed    = require('psi');
 var ngrok        = require('ngrok');
 var browserSync  = require('browser-sync');
 var runSequence  = require('run-sequence');
-var h5bp         = require('h5bp');
+var express      = require('express');
 var plumber      = require('gulp-plumber');
 var changed      = require('gulp-changed');
 
@@ -168,7 +168,8 @@ gulp.task('clean', function () {
 // Tasks > Start a local server                                    $ gulp server
 // =============================================================================
 gulp.task('server', ['watch'], function(){
-  var app = h5bp.createServer({ root: paths.distribution });
+  var app = express();
+  app.use(express.static(paths.distribution));
   app.listen(PORT);
 });
 

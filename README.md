@@ -73,31 +73,3 @@ whatever location is desired for final delivery to the user.
     * `$ gulp` - default task will start the server and watch for file changes
     * `$ gulp build` - default build task will compile all the files
     * etc...
-
-## To-Dos
-
-* add different branches for JADE, HTML, etc... versions?
-    * still worth setting some defaults like SASS instead of LESS, always
-* add a new branch for squarepsace setup...use existing code and grunt-init if
-possible
-* add includes section for the boilerplate code for the `<head>`
-* add includes section for the boilerplate code for the footer scripts
-* add as much html 5 boilerplate code as possible (header, etc...)
-* tag release when all of this stuff is pretty much done
-* use `/build` and `/dist` for root-level directories
-* http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/
-* Need to add a `clean` argument to the speed task to deliver just the page
-speed score and none of the rest of the data
-* Add a `release` or some other argument to the build task that create a
-production build and also increments the build number
-* Need to obfuscate / .env the Google API key or some similar method
-* Remove the H5BP package and just use the express server w/o the extra bells
-and whistles
-* Figure out if squarespace can support extra files that aren't their native
-repo files. Basically, can I push the `_source` directory?
-* Add in some sort of edit CSS in chrome dev tools and have it port back to the
-SCSS tool
-* https://developers.google.com/analytics/devguides/collection/analyticsjs/user-timings
-* Stop the server gulp task from failing if the styles (or another) task fails.
-It means that if I accidentally save while writing incorrect scss, then the
-entire server will sut down and I have to restart it
