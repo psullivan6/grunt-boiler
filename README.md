@@ -11,7 +11,7 @@ Boilerplate code for [gulp](http://gulpjs.com/)
 *stuff you need to INSTALL before any of this will work*
 
 **required** | **optional**
---| --
+-------------| ------------
 [Git](http://git-scm.com/) &hellip; duh, kinda | [EditorConfig](http://editorconfig.org/) and editor/IDE [plugin download](http://editorconfig.org/#download)
 [Node](http://nodejs.org/), specifically [npm](https://docs.npmjs.com/getting-started/installing-node) |
 [Bower](http://bower.io/#install-bower) |
