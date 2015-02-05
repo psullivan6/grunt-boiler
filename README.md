@@ -73,3 +73,17 @@ whatever location is desired for final delivery to the user.
     * `$ gulp` - default task will start the server and watch for file changes
     * `$ gulp build` - default build task will compile all the files
     * etc...
+
+
+## Chrome Dev Tools `gulp` tasks:
+**As per [`gulp-devtools`](https://github.com/niki4810/gulp-devtools) instructions (revised for this exact project):**
+
+1. Download the [Gulp devtools extension](https://chrome.google.com/webstore/detail/gulp-devtools/ojpmgjhofceebfifeajnjojpokebkkji) for Chrome Developer Tools from the Chrome Web Store.  
+1. *Steps that have already been completed (see below)  
+1. Run the `gulp-devtools` Terminal command in the `build` directory  
+1. Open Chrome Dev tools, find the Gulp tab. Your gulp tasks should now be accessible from Chrome.  
+
+****Steps that have already been completed on this repo:***
+
+1. If not already installed, run `npm install -g gulp-devtools` to install `gulp-devtools` globally  
+1. Export gulp from your `gulpfile.js` by adding `module.exports = gulp;`  
