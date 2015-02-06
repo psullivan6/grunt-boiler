@@ -173,6 +173,15 @@ gulp.task('server', ['watch'], function(){
   app.listen(PORT);
 });
 
+// Sequence of PageSpeed related tasks
+gulp.task('ngrok-server', function (callback) {
+  return runSequence(
+    'server',
+    'ngrok',
+    callback
+  );
+});
+
 // =============================================================================
 // Tasks > Watch files then run tasks                               $ gulp watch
 // =============================================================================
@@ -187,9 +196,10 @@ gulp.task('watch', function() {
 // Tasks > Page Speed Insights                                      $ gulp speed
 // =============================================================================
 // ngrok public URL made from localhost:PORT
-gulp.task('ngrok-url', function(callback) {
+gulp.task('ngrok', function(callback) {
   return ngrok.connect(PORT, function (err, url) {
     SITE = url;
+    console.log(url);
     callback();
   });
 });
@@ -214,7 +224,7 @@ gulp.task('pagespeed-mobile', function (callback) {
 gulp.task('pagespeed-sequence', function (callback) {
   return runSequence(
     'server',
-    'ngrok-url',
+    'ngrok',
     'pagespeed-desktop',
     'pagespeed-mobile',
     callback
