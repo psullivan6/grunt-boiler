@@ -3,7 +3,7 @@
 Boilerplate code for [gulp](http://gulpjs.com/)
 
 
----
+===
 
 # Dependencies
 
@@ -14,7 +14,19 @@ Boilerplate code for [gulp](http://gulpjs.com/)
 -------------| ------------
 [Git](http://git-scm.com/) &hellip; duh, kinda | [EditorConfig](http://editorconfig.org/) and editor/IDE [plugin download](http://editorconfig.org/#download)
 [Node](http://nodejs.org/), specifically [npm](https://docs.npmjs.com/getting-started/installing-node) |
+[Gulp](http://gulpjs.com/) &hellip; also duh |
 [Bower](http://bower.io/#install-bower) |
+
+### Tools / Software Install Directions + Docs
+
+#### Gulp
+
+**[Docs](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md)**
+
+**Install Command:**  
+`$ sudo npm install -g gulp` - best to use `sudo` right off the bat to make sure it's installed errywhere
+
+---
 
 ## Plugins
 
@@ -66,9 +78,9 @@ whatever location is desired for final delivery to the user.
 # Run Locally
 ***stuff you need to DO before any of this will work***
 
-1. Navigate to the `/build` directory: `$: cd build/`
-1. Install all the *node* package dependencies: `$: npm install`
-1. Install all the *bower* package dependencies: `$: bower install`
+1. Navigate to the `/build` directory: `$ cd build/`
+1. Install all the *node* package dependencies: `$ npm install`
+1. Install all the *bower* package dependencies: `$ bower install`
 1. Run the gulp task that corresponds to your need:
     * `$ gulp` - default task will start the server and watch for file changes
     * `$ gulp build` - default build task will compile all the files
@@ -87,3 +99,16 @@ whatever location is desired for final delivery to the user.
 
 1. If not already installed, run `npm install -g gulp-devtools` to install `gulp-devtools` globally  
 1. Export gulp from your `gulpfile.js` by adding `module.exports = gulp;`  
+
+
+# To-Do
+
+- [ ] Directory and file structure
+- [ ] Try out a directory structure where `$ gulp` is run at root level
+- [ ] Consolidate `$ gulp clean`, `$ gulp build`, and `$ gulp server`
+- [ ] Correctly log stream errors
+- [ ] Watch all files, not just HTML ... currently SCSS doesn't re-compile
+- [ ] Run server on `$ gulp` command and then have a separate build
+- [ ] Add a release or some other build flag
+- [ ] Add ability to inject custom code into default head template or footer template (for example: the styleguide page vs. the contact page ... one is internal eyes only)
+

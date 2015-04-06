@@ -11,7 +11,7 @@ var stylish      = require('jshint-stylish');
 var concat       = require('gulp-concat');
 var rename       = require('gulp-rename');
 var sourcemaps   = require('gulp-sourcemaps');
-var clean        = require('gulp-clean');
+var del          = require('del');
 var merge        = require('gulp-sequence');
 var gulpif       = require('gulp-if');
 var minify_html  = require('gulp-minify-html');
@@ -159,9 +159,9 @@ gulp.task('html', function() {
 // =============================================================================
 // Tasks > Clean Disribution Directory                              $ gulp clean
 // =============================================================================
-gulp.task('clean', function () {
-  return gulp.src(paths.distribution, { read: false })
-    .pipe(clean({ force: true }));
+gulp.task('clean', function (callback) {
+  
+  del(path.join(paths.distribution, '/**'), { force: true }, callback);
 });
 
 // =============================================================================

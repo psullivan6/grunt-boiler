@@ -1,0 +1,76 @@
+include ./includes/html-head.jade
+include ./includes/head.jade
+body.styleguide
+  <!--[if lt IE 8]>
+  p.browsehappy
+    | You are using an <strong>outdated</strong> browser.
+    | Please <a href="http://browsehappy.com/">upgrade your browser</a>
+    | to improve your experience.
+  <![endif]-->
+  
+  h1 Styleguide
+  
+  ul.colors
+    li.color-values.clearfix
+        ul
+          li
+            label(for='color-variable') Variable
+            input#color-variable.input(name='color-variable', type='text', placeholder='color variable')
+          li
+            label(for='color-css') CSS
+            textarea#color-css.input(name='color-css', rows='6')
+          li
+            label(for='color-hex') Hex
+            input#color-hex.input(name='color-hex', type='text', placeholder='color hex')
+      li#red.color
+        ul.clearfix
+          li.swatch.red-lightest
+            .box.redBG-lightest COLOR
+          li.swatch.red-lighter
+            .box.redBG-lighter COLOR
+          li.swatch.red-light
+            .box.redBG-light COLOR
+          li.swatch.color-base.red
+            .box.redBG BASE
+          li.swatch.red-dark
+            .box.redBG-dark COLOR
+          li.swatch.red-darker
+            .box.redBG-darker COLOR
+          li.swatch.red-darkest
+            .box.redBG-darkest COLOR
+      li#blue.color
+        ul.clearfix
+          li.swatch.blue-lightest
+            .box.blueBG-lightest COLOR
+          li.swatch.blue-lighter
+            .box.blueBG-lighter COLOR
+          li.swatch.blue-light
+            .box.blueBG-light COLOR
+          li.swatch.color-base.blue
+            .box.blueBG BASE
+          li.swatch.blue-dark
+            .box.blueBG-dark COLOR
+          li.swatch.blue-darker
+            .box.blueBG-darker COLOR
+          li.swatch.blue-darkest
+            .box.blueBG-darkest COLOR
+      li#green.color
+        ul.clearfix
+          li.swatch.green-lightest
+            .box.greenBG-lightest COLOR
+          li.swatch.green-lighter
+            .box.greenBG-lighter COLOR
+          li.swatch.green-light
+            .box.greenBG-light COLOR
+          li.swatch.color-base.green
+            .box.greenBG BASE
+          li.swatch.green-dark
+            .box.greenBG-dark COLOR
+          li.swatch.green-darker
+            .box.greenBG-darker COLOR
+          li.swatch.green-darkest
+            .box.greenBG-darkest COLOR
+  
+  a(href="javascript:gaOptout()") Click here to opt-out of Google Analytics
+  
+  include ./includes/footer-scripts.jade

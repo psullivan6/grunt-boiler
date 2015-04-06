@@ -22,7 +22,5 @@
     }
     
     $currentActive = $this;
-    
   });
-  
 })();
